@@ -1,0 +1,27 @@
+# ONLY NEEDS TO BE RUN ONCE AT INIT!
+
+def init_gripper():
+  # Open socket to Robotiq gripper driver
+  socket_open("127.0.0.1", 63352, "1")
+  
+  # Assign a gripper ID (SID = 9 is standard for single gripper setups)
+  socket_set_var("SID", 9, "1")
+  sleep(0.1)
+  
+  # Activate the gripper
+  socket_set_var("ACT", 1, "1")
+  sleep(0.1)
+  
+  # Request "Go To" to start activation cycle
+  # Opens/closes once to sync position sensors 
+  # There is no way to skip the open/close motion in init (apparently)
+  socket_set_var("GTO", 1, "1")
+  
+  # Wait for activation to complete
+  sleep(2.0)
+  
+  textmsg("Gripper initialized and ready.")
+  
+end
+
+init_gripper()

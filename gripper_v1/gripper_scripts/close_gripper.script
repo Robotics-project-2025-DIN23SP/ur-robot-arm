@@ -1,0 +1,17 @@
+def gripper_close():
+  # --- Connect to existing gripper session
+  socket_open("127.0.0.1", 63352, "1")
+
+  # --- Set speed and force
+  socket_set_var("SPE", 255, "1")   # 255 = max speed
+  socket_set_var("FOR", 128, "1")   # 128 = medium force
+
+  # --- Close gripper (255 = fully closed)
+  socket_set_var("POS", 255, "1")    # to closed position
+  socket_set_var("GTO", 1, "1")      # start motion
+
+  sleep(1.0)
+  
+end
+
+gripper_close()
