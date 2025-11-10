@@ -1,6 +1,7 @@
 from gripper import URGripperController
 
-# gripper needs to be initialized before running
+# used just for gripper movements atm
+# gripper needs to be initialized once before running
 
 def run_custom_sequence():
     try:
@@ -11,8 +12,8 @@ def run_custom_sequence():
 
         print("\n--- Executing Gripper Commands ---\n")
 
-        # Open gripper
-        gr.execute_gripper_script("open_gripper.script", call_function="gripper_open")
+        # Init gripper
+        # gr.execute_gripper_script("init_gripper.script", call_function="init_gripper")
 
         # Close gripper
         gr.execute_gripper_script("close_gripper.script", call_function="gripper_close")
@@ -22,6 +23,9 @@ def run_custom_sequence():
 
         # Close gripper
         gr.execute_gripper_script("close_gripper.script", call_function="gripper_close")
+
+        # Open gripper
+        gr.execute_gripper_script("open_gripper.script", call_function="gripper_open")
 
         print("Sequence complete.")
 
