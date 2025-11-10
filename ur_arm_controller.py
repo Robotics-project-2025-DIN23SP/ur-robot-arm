@@ -12,7 +12,7 @@ DASHBOARD_PORT = 29999 # For commands like 'power on', 'play'
 PRIMARY_PORT = 30001   # For streaming URScript commands (e.g., movej)
 
 # Motion Parameters
-DYNAMIC_ACCEL = 0.45   # Acceleration for joint moves (rad/s^2)
+DYNAMIC_ACCEL = 0.30   # Acceleration for joint moves (rad/s^2)
 DYNAMIC_VELOCITY = 0.45 # Velocity for joint moves (rad/s)
 
 # Joint Pose Definitions (in Radians)

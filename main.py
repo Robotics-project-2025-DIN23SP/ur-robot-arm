@@ -1,7 +1,7 @@
 # C:\Users\44745\Desktop\School Robot Arm\main.py
 
-import ur_arm_controller 
 from gripper import URGripperController
+import importlib
 
 def run_custom_sequence():
     """
@@ -28,22 +28,18 @@ def run_custom_sequence():
         
         print("\n--- Initialization Complete. Starting 12-Step Robot Sequence ---\n")
         
-        sequence_steps = [
-            (1, "Open Gripper", lambda: gr.execute_gripper_script("open_gripper.script", call_function="gripper_open")),
-            (2, "Move to Default Position (Lift/Transfer)", ur_arm_controller.move_to_default_position),
-            (3, "Move to Position 1 (Approach)", ur_arm_controller.move_to_position_1),
-            (4, "Move to Position 2 (Grasp)", ur_arm_controller.move_to_position_2),
-            (5, "Close Gripper", lambda: gr.execute_gripper_script("close_gripper.script", call_function="gripper_close")),
-            (6, "Move to Position 1 (Approach)", ur_arm_controller.move_to_position_1),
-            (7, "Move to Default Position (Lift/Transfer)", ur_arm_controller.move_to_default_position),
-            # (8, "Open Gripper", lambda: gr.execute_gripper_script("Gripper_Open.script")),
-            # (9, "Close Gripper", lambda: gr.execute_gripper_script("Gripper_Close.script")),
-            # (10, "Move to Position 3 (Approach Release)", ur_arm_controller.move_to_position_3),
-            # (11, "Move to Position 4 (Clearance)", ur_arm_controller.move_to_position_4),
-            # (12, "Move to Position 3 (Approach Release)", ur_arm_controller.move_to_position_3),
-            # (13, "Move to Default Position (Home)", ur_arm_controller.move_to_default_position),
-        ]
+        # Choose which sequence to run
+        sequence_name = input("Enter sequence to run (item_1, item_2, item_3, item_4): ").strip()
+        module_name = f"item_movement_sequences.{sequence_name}"
 
+        try:
+            sequence_module = importlib.import_module(module_name)
+        except ModuleNotFoundError:
+            print(f"Sequence '{sequence_name}' not found.")
+            return
+        
+        sequence_steps = sequence_module.get_sequence(gr)
+        
         # Execute each step in the sequence
         for step_num, description, action_func in sequence_steps:
             print(f"**[Step {step_num}]** {description}...")
