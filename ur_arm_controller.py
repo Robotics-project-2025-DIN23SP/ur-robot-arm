@@ -20,10 +20,15 @@ DYNAMIC_VELOCITY = 0.45 # Velocity for joint moves (rad/s)
 # Note: Positions 1-4 use the user-provided joint values.
 
 DEFAULT_POSITION: List[float] = [1.57, -1.57, 1.57, -1.57, -1.57, 0.00]
-POSITION_1_POSE: List[float] = [1.28, -0.81, 1.60, -2.37, -1.57, -0.28]
-POSITION_2_POSE: List[float] = [1.27, -0.65, 1.61, -2.54, -1.57, -0.28]
+POSITION_1_POSE: List[float] = [1.089783, -0.36913, 0.83095, -2.047795, -1.578127, -0.563741]
+POSITION_2_POSE: List[float] = [1.089783, -0.34, 0.83095, -2.047795, -1.578127, -0.563741]
 POSITION_3_POSE: List[float] = [1.28, -0.81, 1.60, -2.37, -1.57, 0.29]
 POSITION_4_POSE: List[float] =  [1.57, -1.57, 1.57, -1.57, -1.57, 0.00]
+
+# position on top of the GoPiGo car
+POSITION_GOPIGO_LOW_POSE: List[float] =  [0.13473, -0.987507, 1.9620991, -2.496868, -1.598372, -1.502553]
+POSITION_GOPIGO_HIGH_POSE: List[float] =  [0.13473, -1.05, 1.9620991, -2.496868, -1.598372, -1.502553]
+
 
 
 # =========================================================
@@ -122,6 +127,18 @@ def move_to_position_3():
 def move_to_position_4():
     """Moves the arm to the defined POSITION_4_POSE."""
     script = generate_movej_script(POSITION_4_POSE, "position_4")
+    send_urscript(script)
+    time.sleep(5) 
+
+def move_to_gopigo_low_position():
+    """Moves the arm to the defined safe POSITION_GOPIGO_LOW_POSE."""
+    script = generate_movej_script(POSITION_GOPIGO_LOW_POSE, "position_gopigo_low_pose")
+    send_urscript(script)
+    time.sleep(5) 
+
+def move_to_gopigo_high_position():
+    """Moves the arm to the defined safe POSITION_GOPIGO_HIGH_POSE."""
+    script = generate_movej_script(POSITION_GOPIGO_HIGH_POSE, "position_gopigo_high_pose")
     send_urscript(script)
     time.sleep(5) 
 

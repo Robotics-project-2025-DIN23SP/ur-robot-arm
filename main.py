@@ -26,8 +26,6 @@ def run_custom_sequence():
         # Init gripper (only run once when starting coding)
         # gr.execute_gripper_script("init_gripper.script", call_function="init_gripper")
         
-        print("\n--- Initialization Complete. Starting 12-Step Robot Sequence ---\n")
-        
         # Choose which sequence to run
         sequence_name = input("Enter sequence to run (item_1, item_2, item_3, item_4): ").strip()
         module_name = f"item_movement_sequences.{sequence_name}"
@@ -38,6 +36,8 @@ def run_custom_sequence():
             print(f"Sequence '{sequence_name}' not found.")
             return
         
+        print("\n--- Initialization Complete. Starting 12-Step Robot Sequence ---\n")
+        
         sequence_steps = sequence_module.get_sequence(gr)
         
         # Execute each step in the sequence
@@ -46,7 +46,7 @@ def run_custom_sequence():
             action_func() 
             print(f"Step {step_num} complete.\n")
             
-        print("\n*** Full 12-Step Sequence Complete. ***")
+        print("\n*** Full Sequence Complete. ***")
 
     except Exception as e:
         print(f"ERROR: {e}")
