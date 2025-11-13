@@ -1,6 +1,4 @@
-# C:\Users\44745\Desktop\School Robot Arm\main.py
-
-from gripper import URGripperController
+from gripper.gripper import URGripperController
 import importlib
 
 def run_custom_sequence():
