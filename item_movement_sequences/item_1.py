@@ -4,10 +4,10 @@ def get_sequence(gr):
     return [
         (1, "Open Gripper", lambda: gr.execute_gripper_script("open_gripper.script", call_function="gripper_open")),
         (2, "Move to Default Position (Lift/Transfer)", lambda: move_to("default_position")),
-        (3, "Move to Position 1 (Approach)", lambda: move_to("position_1")),
-        (4, "Move to Position 2 (Grasp)", lambda: move_to("position_2")),
+        (3, "Move to Position 1 (Approach)", lambda: move_to("position_approach_item_1")),
+        (4, "Move to Position 2 (Grasp)", lambda: move_to("position_grasp_item_1")),
         (5, "Close Gripper", lambda: gr.execute_gripper_script("close_gripper.script", call_function="gripper_close")),
-        (6, "Move to Position 1 (Approach)", lambda: move_to("position_1")),
+        (6, "Move to Position 1 (Approach)", lambda: move_to("position_approach_item_1")),
         (7, "Move to Default Position (Lift/Transfer)", lambda: move_to("default_position")),
         (8, "Move to GoPiGo Low Position", lambda: move_to("position_gopigo_low")),
         (9, "Open Gripper", lambda: gr.execute_gripper_script("open_gripper.script", call_function="gripper_open")),

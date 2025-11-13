@@ -5,12 +5,18 @@ from .ur_arm_config import *
 
 POSITIONS = {
     "default_position": DEFAULT_POSITION,
-    "position_1": POSITION_1,
-    "position_2": POSITION_2,
-    "position_approach_item_3": POSITION_APPROACH_ITEM_3,
-    "position_grasp_item_3": POSITION_GRASP_ITEM_3,
+
+    # positions above the GoPiGo
     "position_gopigo_low": POSITION_GOPIGO_LOW,
     "position_gopigo_high": POSITION_GOPIGO_HIGH,
+
+    # positions for item 1
+    "position_approach_item_1": POSITION_APPROACH_ITEM_1,
+    "position_grasp_item_1": POSITION_GRASP_ITEM_1,
+
+    # positions for item 3
+    "position_approach_item_3": POSITION_APPROACH_ITEM_3,
+    "position_grasp_item_3": POSITION_GRASP_ITEM_3,
 }
 
 def move_to(name: str, sleep_time: float = 5.0):
