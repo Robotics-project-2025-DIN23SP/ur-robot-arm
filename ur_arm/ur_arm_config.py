@@ -16,17 +16,13 @@ DYNAMIC_VELOCITY = 0.45 # Velocity for joint moves (rad/s)
 # starting/ending position
 DEFAULT_POSITION: List[float] = [1.57, -1.57, 1.57, -1.57, -1.57, 0.00]
 
-# currently unused/redundant(?) positions
-POSITION_3_POSE: List[float] = [1.28, -0.81, 1.60, -2.37, -1.57, 0.29]
-POSITION_4_POSE: List[float] =  [1.57, -1.57, 1.57, -1.57, -1.57, 0.00]
-
 # position on top of the GoPiGo car
-POSITION_GOPIGO_LOW_POSE: List[float] =  [0.13473, -0.987507, 1.9620991, -2.496868, -1.598372, -1.502553]
-POSITION_GOPIGO_HIGH_POSE: List[float] =  [0.13473, -1.05, 1.9620991, -2.496868, -1.598372, -1.502553]
+POSITION_GOPIGO_LOW: List[float] =  [0.13473, -0.987507, 1.9620991, -2.496868, -1.598372, -1.502553]
+POSITION_GOPIGO_HIGH: List[float] =  [0.13473, -1.05, 1.9620991, -2.496868, -1.598372, -1.502553]
 
 # positions for item_1
-POSITION_1_POSE: List[float] = [1.089783, -0.36913, 0.83095, -2.047795, -1.578127, -0.563741]
-POSITION_2_POSE: List[float] = [1.089783, -0.34, 0.83095, -2.047795, -1.578127, -0.563741]
+POSITION_1: List[float] = [1.089783, -0.36913, 0.83095, -2.047795, -1.578127, -0.563741]
+POSITION_2: List[float] = [1.089783, -0.34, 0.83095, -2.047795, -1.578127, -0.563741]
 
 # TODO: positions for item_2
 

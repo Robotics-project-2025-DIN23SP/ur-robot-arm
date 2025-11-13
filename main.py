@@ -7,15 +7,11 @@ def run_custom_sequence():
     initializing the gripper, and iterating through a defined list of actions.
     """
     try:
-        # --- Step 0: Safety Check and Initialization ---
+        # --- Safety Check and Initialization ---
         input("\n--- Initialization Sequence ---\n"
             "1. Ensure E-STOP is released and protective stop is cleared.\n"
             "2. Ensure robot is in Remote Control mode.\n"
             "3. Press **ENTER** to start initialization (Power On, Gripper Setup).\n")
-        
-        # TODO: is this part needed? I never ran this but for some reason everything still works
-        # Initialize the UR Arm (Placeholder: Power on, play program, etc.)
-        # ur_arm_controller.initialize_robot() 
 
         # Create instance of gripper and connect to gripper
         gr = URGripperController()
