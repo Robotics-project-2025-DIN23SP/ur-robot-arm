@@ -1,6 +1,6 @@
 import time
-from .ur_arm_connection import send_dashboard_command, send_urscript
-from .ur_arm_movement_scripts import generate_movej_script
+from .ur_arm_connection import send_urscript
+from .ur_arm_movement_scripts import generate_movej_script, generate_movel_script, generate_movec_script
 from .ur_arm_config import *
 
 POSITIONS = {
@@ -19,11 +19,38 @@ POSITIONS = {
     "position_grasp_item_3": POSITION_GRASP_ITEM_3,
 }
 
-def move_to(name: str, sleep_time: float = 5.0):
-    """Generic move function using a name from the POSITIONS dict."""
-    pose = POSITIONS.get(name)
-    if pose is None:
-        raise ValueError(f"Unknown position: {name}")
-    script = generate_movej_script(pose, name)
+MOVE_GENERATORS = {
+    "movej": generate_movej_script,
+    "movel": generate_movel_script,
+    "movec": generate_movec_script
+}
+
+def move_to(name: str, sleep_time: float = 5.0, move_type: str = "movej", target: str = None):
+    """
+    Generic move function using a name from the POSITIONS dict.
+    Args:
+        name: The name of the position from the POSITIONS dict. In case of movec, the name of via pose.
+        sleep_time: Seconds to wait after the movement completes.
+        move_type: Type of movement command.
+        target: Optional target position name for movec movement command
+    """
+    if move_type in ("movej", "movel"):
+        pose = POSITIONS.get(name)
+        if pose is None:
+            raise ValueError(f"Unknown position: {name}")
+        generator = MOVE_GENERATORS.get(move_type)
+        script = generator(pose, name)
+
+    elif move_type == "movec":
+        if target is None:
+            raise ValueError("movec requires a target position name")
+        via_pose = POSITIONS.get(name)
+        target_pose = POSITIONS.get(target)
+        if via_pose is None or target_pose is None:
+            raise ValueError(f"Unknown position(s) for movec: {name}, {target}")
+        script = generate_movec_script(via_pose, target_pose, name)
+    else:
+        raise ValueError(f"Invalid move_type '{move_type}'")
+    
     send_urscript(script)
     time.sleep(sleep_time) 
