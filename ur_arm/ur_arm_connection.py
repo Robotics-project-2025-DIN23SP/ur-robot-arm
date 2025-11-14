@@ -17,7 +17,7 @@ def send_dashboard_command(command: str) -> str:
             print(f"Dashboard [{command}] -> {response}")
             return response
     except Exception as e:
-        print(f"❌ Dashboard command failed ({command}): {e}")
+        print(f"Dashboard command failed ({command}): {e}")
         return ""
 
 def send_urscript(script: str):
@@ -27,7 +27,7 @@ def send_urscript(script: str):
             s.settimeout(5)
             s.connect((ROBOT_IP, PRIMARY_PORT))
             s.sendall(script.encode("utf-8"))
-            print("✅ URScript sent successfully.")
+            print("URScript sent successfully.")
     except Exception as e:
-        print(f"❌ URScript send failed: {e}")
+        print(f"URScript send failed: {e}")
     time.sleep(0.1) # Brief pause after sending script

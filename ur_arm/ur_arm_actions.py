@@ -25,7 +25,15 @@ MOVE_GENERATORS = {
     "movec": generate_movec_script
 }
 
-def move_to(name: str, sleep_time: float = 5.0, move_type: str = "movej", target: str = None):
+def move_to(
+        name: str, 
+        sleep_time: float = 5.0, 
+        move_type: str = "movej", 
+        target: str = None, 
+        accel: float = 0.30, 
+        vel: float = 0.45,
+        final_decel: float = None
+    ):
     """
     Generic move function using a name from the POSITIONS dict.
     Args:
@@ -33,13 +41,16 @@ def move_to(name: str, sleep_time: float = 5.0, move_type: str = "movej", target
         sleep_time: Seconds to wait after the movement completes.
         move_type: Type of movement command.
         target: Optional target position name for movec movement command
+        accel: Acceleration for joint moves (rad/s^2)
+        vel: Velocity for joint moves (rad/s)
+        final_decel: Optional deceleration for movec movements
     """
     if move_type in ("movej", "movel"):
         pose = POSITIONS.get(name)
         if pose is None:
             raise ValueError(f"Unknown position: {name}")
         generator = MOVE_GENERATORS.get(move_type)
-        script = generator(pose, name)
+        script = generator(pose, name, accel=accel, vel=vel)
 
     elif move_type == "movec":
         if target is None:
@@ -48,7 +59,7 @@ def move_to(name: str, sleep_time: float = 5.0, move_type: str = "movej", target
         target_pose = POSITIONS.get(target)
         if via_pose is None or target_pose is None:
             raise ValueError(f"Unknown position(s) for movec: {name}, {target}")
-        script = generate_movec_script(via_pose, target_pose, name)
+        script = generate_movec_script(via_pose, target_pose, name, accel=accel, vel=vel, final_decel=final_decel)
     else:
         raise ValueError(f"Invalid move_type '{move_type}'")
     
