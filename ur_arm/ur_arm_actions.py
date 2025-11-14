@@ -32,7 +32,7 @@ def move_to(
         target: str = None, 
         accel: float = 0.30, 
         vel: float = 0.45,
-        final_decel: float = None
+        final_decel: float = 2.0
     ):
     """
     Generic move function using a name from the POSITIONS dict.
@@ -43,7 +43,7 @@ def move_to(
         target: Optional target position name for movec movement command
         accel: Acceleration for joint moves (rad/s^2)
         vel: Velocity for joint moves (rad/s)
-        final_decel: Optional deceleration for movec movements
+        final_decel: Deceleration for movec movements
     """
     if move_type in ("movej", "movel"):
         pose = POSITIONS.get(name)
