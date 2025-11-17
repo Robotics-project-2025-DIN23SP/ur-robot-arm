@@ -14,6 +14,10 @@ POSITIONS = {
     "position_approach_item_1": POSITION_APPROACH_ITEM_1,
     "position_grasp_item_1": POSITION_GRASP_ITEM_1,
 
+    # positions for item 2
+    "position_approach_item_2": POSITION_APPROACH_ITEM_2,
+    "position_grasp_item_2": POSITION_GRASP_ITEM_2,
+
     # positions for item 3
     "position_approach_item_3": POSITION_APPROACH_ITEM_3,
     "position_grasp_item_3": POSITION_GRASP_ITEM_3,
