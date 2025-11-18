@@ -1,15 +1,16 @@
 from typing import List
+from .degrees_to_radians import degrees_to_radians
 
 # -- Robot Connection Settings --
 ROBOT_IP = "192.168.100.10"
 DASHBOARD_PORT = 29999 # For commands like 'power on', 'play'
 PRIMARY_PORT = 30001   # For streaming URScript commands (e.g., movej)
 
-# -- Joint Pose Definitions (in Radians) --
+# -- Joint Pose Definitions (in degrees now that we have conversion) --
 # Format for movej: [Base, Shoulder, Elbow, Wrist1, Wrist2, Wrist3]
 
 # starting/ending position
-DEFAULT_POSITION: List[float] = [1.57, -1.57, 1.57, -1.57, -1.57, 0.00]
+DEFAULT_POSITION: List[float] = degrees_to_radians([71.89, -92.67, 113.41, -112.82, -90.60, -198.77])
 
 # position on top of the GoPiGo car
 POSITION_GOPIGO_LOW: List[float] =  [0.13473, -0.987507, 1.9620991, -2.496868, -1.598372, -1.502553]
