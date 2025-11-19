@@ -18,7 +18,7 @@ def run_custom_sequence():
         gr.connect()
         
         # Init gripper (only run once when starting coding)
-        # gr.execute_gripper_script("init_gripper.script", call_function="init_gripper")
+        gr.execute_gripper_script("init_gripper.script", call_function="init_gripper")
         
         # Choose which sequence to run
         sequence_name = input("Enter sequence to run (item_1, item_2, item_3, item_4): ").strip()

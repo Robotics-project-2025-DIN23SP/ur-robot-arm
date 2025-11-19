@@ -21,6 +21,10 @@ POSITIONS = {
     # positions for item 3
     "position_approach_item_3": POSITION_APPROACH_ITEM_3,
     "position_grasp_item_3": POSITION_GRASP_ITEM_3,
+
+    # positions for item 4
+    "position_approach_item_4": POSITION_APPROACH_ITEM_4,
+    "position_grasp_item_4": POSITION_GRASP_ITEM_4,
 }
 
 MOVE_GENERATORS = {
