@@ -55,7 +55,8 @@ move_arm_linearly_to_{name}()
 def generate_movec_script(
         via_pose: List[float], 
         target_pose: List[float], 
-        name: str, accel: float = 0.30, 
+        name: str, 
+        accel: float = 0.30, 
         vel: float = 0.45, 
         final_decel: float = 2.0
     ) -> str:
