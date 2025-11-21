@@ -13,7 +13,7 @@ def run_custom_sequence(sequence_name: str):
         gr.connect()
         
         # Init gripper (only run once when starting coding)
-        # gr.execute_gripper_script("init_gripper.script", call_function="init_gripper")
+        gr.execute_gripper_script("init_gripper.script", call_function="init_gripper")
         
         # Choose which sequence to run from item_movement_sequences
         module_name = f"item_movement_sequences.{sequence_name}"
@@ -35,10 +35,10 @@ def run_custom_sequence(sequence_name: str):
             print(f"Step {step_num} complete.\n")
             
         print("\n*** Full Sequence Complete. ***")
-        return True
+        return "True"
 
     except Exception as e:
         print(f"ERROR: {e}")
-        return False
+        return "False"
     finally:
         gr.disconnect()

@@ -12,5 +12,6 @@ def get_sequence(gr):
         (9, "Move to GoPiGo High Position", lambda: move_to("position_gopigo_high", 4)),
         (8, "Move to GoPiGo Low Position", lambda: move_to("position_gopigo_low", 4)),
         (10, "Open Gripper", lambda: gr.execute_gripper_script("open_gripper.script", call_function="gripper_open")),
-        (11, "Move to Default Position (Lift/Transfer)", lambda: move_to("default_position")),
+        (11, "Move to GoPiGo High Position", lambda: move_to("position_gopigo_high", 4)),
+        (12, "Move to Default Position (Lift/Transfer)", lambda: move_to("default_position")),
     ]
