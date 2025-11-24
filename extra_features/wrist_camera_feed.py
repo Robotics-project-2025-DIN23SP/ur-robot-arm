@@ -7,7 +7,7 @@ import time
 # ##Arm 1
 # CAMERA_URL = "http://192.168.100.10:4242/current.jpg"
 ##Arm 2
-CAMERA_URL = "http://192.168.100.20:4242/current.jpg"
+CAMERA_URL = "http://192.168.100.10:4242/current.jpg"
 
 def show_live_feed(poll_interval=0.1):
     print("Starting Robotiq Wrist Camera feed... (Press ESC to quit)")
