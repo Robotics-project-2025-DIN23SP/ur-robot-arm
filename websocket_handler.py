@@ -39,8 +39,8 @@ async def websocket_connection():
 
             if event == "CONNECTED":
                 print("server is connected")
-            elif event == "TEST_PICK_AND_PLACE":
-                # get code for ordered product 
+            if event == "TEST_PICK_AND_PLACE":
+                # get code for ordered product
                 product_code = payload.get("product", "P001")
                 sequence_name = PRODUCT_TO_SEQUENCE.get(product_code)
 
@@ -65,4 +65,3 @@ async def websocket_connection():
                 }
                 
                 await websocket.send(json.dumps(response))
-                print("SUCCESS")

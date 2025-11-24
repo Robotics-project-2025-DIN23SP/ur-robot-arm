@@ -5,7 +5,7 @@ import numpy as np
 import cv2
 from rtde_receive import RTDEReceiveInterface
 
-ROBOT_IP = "192.168.100.20"
+ROBOT_IP = "192.168.100.10"
 DASHBOARD_PORT = 29999
 URSCRIPT_PORT = 30002
 CAMERA_URL = f"http://{ROBOT_IP}:4242/current.jpg"
