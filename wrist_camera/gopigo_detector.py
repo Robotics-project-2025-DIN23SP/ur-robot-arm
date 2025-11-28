@@ -28,7 +28,7 @@ bf = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True)
 
 # minimum matches required for detection
 # might be necessary to change to 55 or something later
-MATCH_THRESHOLD = 50
+MATCH_THRESHOLD = 60
 
 def detect_gopigo(frame_gray):
     # get interesting spots and their numeric vectors from the current camera feed
