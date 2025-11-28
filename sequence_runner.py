@@ -35,11 +35,11 @@ def run_custom_sequence(sequence_name: str):
             print(f"Step {step_num} complete.\n")
             
         print("\n*** Full Sequence Complete. ***")
-        return "True"
+        return True
 
     except Exception as e:
         print(f"ERROR: {e}")
-        return "False"
+        return False
     finally:
         gr.disconnect()
     

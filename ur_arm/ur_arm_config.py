@@ -13,8 +13,8 @@ PRIMARY_PORT = 30001   # For streaming URScript commands (e.g., movej)
 DEFAULT_POSITION: List[float] = degrees_to_radians([71.89, -92.67, 113.41, -112.82, -90.60, -198.77])
 
 # position on top of the GoPiGo car
-POSITION_GOPIGO_HIGH: List[float] =  degrees_to_radians([-1.81, -67.92, 86.50, -110.30, -91.32, -182.13])
-POSITION_GOPIGO_LOW: List[float] =  degrees_to_radians([-1.81, -53.90, 102.28, -140.11, -91.30, -182.15])
+POSITION_GOPIGO_HIGH: List[float] =  degrees_to_radians([3.61, -64.32, 82.68, -109.95, -91.47, -176.72])
+POSITION_GOPIGO_LOW: List[float] =  degrees_to_radians([3.60, -51.61, 97.22, -137.19, -91.46, -176.75])
 
 # positions for item_1
 POSITION_APPROACH_ITEM_1: List[float] = degrees_to_radians([65.02, -73.07, 90.05, -106.94, -89.99, -205.01])
