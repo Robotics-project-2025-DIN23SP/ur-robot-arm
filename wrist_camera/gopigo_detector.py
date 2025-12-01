@@ -31,29 +31,33 @@ bf = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True)
 MATCH_THRESHOLD = 60
 
 def detect_gopigo(frame_gray):
-    # get interesting spots and their numeric vectors from the current camera feed
-    kp_frame, des_frame = orb.detectAndCompute(frame_gray, None)
+    try:
+        # get interesting spots and their numeric vectors from the current camera feed
+        kp_frame, des_frame = orb.detectAndCompute(frame_gray, None)
 
-    # if no features are found at all, return
-    if des_frame is None:
+        # if no features are found at all, return
+        if des_frame is None:
+            return False, [], kp_frame
+
+        best_good_matches = 0
+
+        for (ref_kp, ref_des) in ref_features:
+            # match current camera feed to reference images
+            matches = bf.match(ref_des, des_frame)
+
+            # sort by quality (how similar the freatures are in references and current feed)
+            # distance = how similar the features are
+            matches = sorted(matches, key=lambda x: x.distance)
+
+            good_matches = [m for m in matches if m.distance < 50]
+
+            # keep track of the best match count among all reference images
+            best_good_matches = max(best_good_matches, len(good_matches))
+
+            if len(good_matches) >= MATCH_THRESHOLD:
+                return True, good_matches, kp_frame
+
         return False, [], kp_frame
-
-    best_good_matches = 0
-
-    for (ref_kp, ref_des) in ref_features:
-        # match current camera feed to reference images
-        matches = bf.match(ref_des, des_frame)
-
-        # sort by quality (how similar the freatures are in references and current feed)
-        # distance = how similar the features are
-        matches = sorted(matches, key=lambda x: x.distance)
-
-        good_matches = [m for m in matches if m.distance < 50]
-
-        # keep track of the best match count among all reference images
-        best_good_matches = max(best_good_matches, len(good_matches))
-
-        if len(good_matches) >= MATCH_THRESHOLD:
-            return True, good_matches, kp_frame
-
-    return False, [], kp_frame
+    
+    except Exception as e:
+        print(f"GoPiGo Detection ERROR: {e}")
