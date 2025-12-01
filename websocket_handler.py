@@ -4,6 +4,7 @@ import asyncio
 from concurrent.futures import ThreadPoolExecutor
 from config import URL, SECRET_TOKEN
 from sequence_runner import run_custom_sequence
+from wrist_camera.websocket_video_stream import run_action_with_streaming
 
 PRODUCT_TO_SEQUENCE = {
     "P001": "item_1",
@@ -52,10 +53,31 @@ async def websocket_connection():
                     status = "fail"
                 else:
                     # Run blocking code in executor so event loop can process pings
+                    #loop = asyncio.get_event_loop()
+                    #success = await loop.run_in_executor(executor, run_custom_sequence, sequence_name)
+                    #status = "success" if success else "fail"
+                    #print(f"STATUS: {status}")
+
                     loop = asyncio.get_event_loop()
-                    success = await loop.run_in_executor(executor, run_custom_sequence, sequence_name)
-                    status = "success" if success else "fail"
-                    print(f"STATUS: {status}")
+
+                    async def action():
+                        status = await loop.run_in_executor(
+                            executor,
+                            run_custom_sequence,
+                            sequence_name
+                        )
+
+                        print(f"STATUS: {status}")
+
+                        return status
+                    
+                    # Run action with streaming
+                    await run_action_with_streaming(
+                        websocket,
+                        "UR_ARM_1",
+                        action_fn=action,
+                        response_event="PICK_COMPLETE",
+                    )
 
                 # send response message
                 response = {
@@ -66,4 +88,4 @@ async def websocket_connection():
                     }
                 }
                 
-                await websocket.send(json.dumps(response))
+                # await websocket.send(json.dumps(response))

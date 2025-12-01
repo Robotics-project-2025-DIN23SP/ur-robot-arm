@@ -6,7 +6,12 @@ from gopigo_detector import detect_gopigo
 
 CAMERA_URL = "http://192.168.100.10:4242/current.jpg"
 
+# for our own testing
 def show_live_feed(poll_interval=0.1):
+    """
+    Gets the live wrist camera feed with
+    GoPiGo detection and text drawn.
+    """
     print("Starting feed... (Press ESC to quit)")
 
     while True:
