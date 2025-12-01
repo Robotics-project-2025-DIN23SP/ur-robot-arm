@@ -12,6 +12,10 @@ detection_state = {
     }
 
 def show_live_feed(poll_interval=0.1):
+    """
+    Gets the live wrist camera feed with
+    GoPiGo detection and text drawn.
+    """
     print("Starting feed... (Press ESC to quit)")
     global detection_state
 
