@@ -44,4 +44,4 @@ def run_custom_sequence(sequence_name: str):
         gr.disconnect()
     
 if __name__ == "__main__":
-    run_custom_sequence("item_1")
+    run_custom_sequence("item_5")

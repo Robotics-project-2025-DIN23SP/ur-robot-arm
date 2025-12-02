@@ -44,31 +44,39 @@ async def websocket_connection():
                 print("server is connected")
             elif event == "PICK_AND_PLACE" or "TEST_PICK_AND_PLACE":
                 # get code for ordered product 
+
+                # TODO: FIX ERROR!
+                # Error description:
+                # If a wrong product (like P005) is given, we get the error
+                # under "if not sequence_name:". As soon as the error is done calling,
+                # the code continues to the "else" block and picks up item_1 
+
                 product_code = payload.get("product", "P001")
+                print(f"Payload: {payload}")
                 sequence_name = PRODUCT_TO_SEQUENCE.get(product_code)
+                print(f"Sequence_name: {sequence_name}")
 
                 # pick and place product
                 if not sequence_name:
                     print(f"ERROR: No movement sequence mapped to product {product_code}")
-                    status = "fail"
+
+                    #send response message
+                    response = {
+                        "sender_id": "UR_ARM_1",
+                        "event": "PICK_COMPLETE",
+                        "payload": {
+                            "status": "fail"
+                        }
+                    }
+
+                    await websocket.send(json.dumps(response))
                 else:
                     # Run blocking code in executor so event loop can process pings
-                    #loop = asyncio.get_event_loop()
-                    #success = await loop.run_in_executor(executor, run_custom_sequence, sequence_name)
-                    #status = "success" if success else "fail"
-                    #print(f"STATUS: {status}")
-
                     loop = asyncio.get_event_loop()
-
                     async def action():
-                        status = await loop.run_in_executor(
-                            executor,
-                            run_custom_sequence,
-                            sequence_name
-                        )
-
+                        success = await loop.run_in_executor(executor, run_custom_sequence, sequence_name)
+                        status = "success" if success else "fail"
                         print(f"STATUS: {status}")
-
                         return status
                     
                     # Run action with streaming
@@ -78,14 +86,3 @@ async def websocket_connection():
                         action_fn=action,
                         response_event="PICK_COMPLETE",
                     )
-
-                # send response message
-                response = {
-                    "sender_id": "UR_ARM_1",
-                    "event": "PICK_COMPLETE",
-                    "payload": {
-                        "status": status
-                    }
-                }
-                
-                # await websocket.send(json.dumps(response))
