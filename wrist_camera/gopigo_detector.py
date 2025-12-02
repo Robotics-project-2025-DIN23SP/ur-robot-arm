@@ -11,6 +11,7 @@ orb = cv2.ORB_create(nfeatures=2000)
 ref_imgs = [
     cv2.imread("reference_pictures/gopigo_image_1.jpeg", cv2.IMREAD_GRAYSCALE),
     cv2.imread("reference_pictures/gopigo_image_2.jpeg", cv2.IMREAD_GRAYSCALE),
+    cv2.imread("reference_pictures/gopigo_image_4.jpeg", cv2.IMREAD_GRAYSCALE),
 ]
 
 ref_features = []

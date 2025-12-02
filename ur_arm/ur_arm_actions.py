@@ -9,6 +9,7 @@ POSITIONS = {
     # positions above the GoPiGo
     "position_gopigo_low": POSITION_GOPIGO_LOW,
     "position_gopigo_high": POSITION_GOPIGO_HIGH,
+    "position_gopigo_detect": POSITION_GOPIGO_DETECT,
 
     # positions for item 1
     "position_approach_item_1": POSITION_APPROACH_ITEM_1,
