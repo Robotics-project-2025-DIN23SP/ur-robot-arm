@@ -117,7 +117,7 @@ async def run_action_with_streaming(
             "payload": {"status": status}
         }))
 
-        return status
+        
     
     except Exception as e:
         print(f"Run Action With Streaming Frame ERROR: {e}")
