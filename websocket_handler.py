@@ -46,15 +46,11 @@ async def websocket_connection():
                     message_data = json.loads(message)
                     event = message_data.get("event")
                     payload = message_data.get("payload", {})
-                    print(event)
-                    #print(payload)
+                    print(f"EVENT: {event}")
                     
                     if event == "CONNECTED":
                         print("server is connected")
-                    if event == "PICK_AND_PLACE":
-
-                        print(event)
-                        #print(payload)
+                    if event == "PICK_AND_PLACE" or "TEST_PICK_AND_PLACE":
 
                         # get code for ordered product
                         product_code = payload.get("product", "P001")
