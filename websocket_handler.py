@@ -21,8 +21,8 @@ async def websocket_connection():
             print("connecting to server")
 
             try:
-                pong_waiter = await websocket.ping()
-                await pong_waiter
+                ping_waiter = await websocket.ping()
+                await ping_waiter
                 print("Ping successful")
             except Exception as e:
                 print(f"Ping failed: {e}")
@@ -38,7 +38,6 @@ async def websocket_connection():
             }
         
             await websocket.send(json.dumps(init_msg))
-
             
             # listen for messages
             async for message in websocket:
