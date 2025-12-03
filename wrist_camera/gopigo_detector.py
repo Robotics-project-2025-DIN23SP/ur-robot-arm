@@ -1,4 +1,5 @@
 import cv2
+import os
 
 CAMERA_URL = "http://192.168.100.10:4242/current.jpg"
 
@@ -6,12 +7,16 @@ CAMERA_URL = "http://192.168.100.10:4242/current.jpg"
 # "nfeatures=2000" means that it extracts up to 2000 features
 orb = cv2.ORB_create(nfeatures=2000)
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+REF_IMG_DIR = os.path.join(BASE_DIR, "reference_pictures")
+
 # load the reference images of GoPiGos that we compare the live camera feed to
 # convert images to grayscale (which ORB uses)
 ref_imgs = [
-    cv2.imread("reference_pictures/gopigo_image_1.jpeg", cv2.IMREAD_GRAYSCALE),
-    cv2.imread("reference_pictures/gopigo_image_2.jpeg", cv2.IMREAD_GRAYSCALE),
-    cv2.imread("reference_pictures/gopigo_image_4.jpeg", cv2.IMREAD_GRAYSCALE),
+    cv2.imread(os.path.join(REF_IMG_DIR, "gopigo_image_1.jpeg"), cv2.IMREAD_GRAYSCALE),
+    cv2.imread(os.path.join(REF_IMG_DIR, "gopigo_image_2.jpeg"), cv2.IMREAD_GRAYSCALE),
+    cv2.imread(os.path.join(REF_IMG_DIR, "gopigo_image_4.jpeg"), cv2.IMREAD_GRAYSCALE),
 ]
 
 ref_features = []

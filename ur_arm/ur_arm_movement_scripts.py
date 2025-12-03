@@ -8,7 +8,7 @@ def generate_movej_script(
     ) -> str:
     """Generates the URScript string for a joint movement command.
     Args:
-        pose: movement pose
+        pose: movement posell
         name: Name of the movement for logging
         accel: acceleration for joint moves (rad/s^2)
         vel: velocity for joint moves (rad/s)
