@@ -38,7 +38,7 @@ def run_custom_sequence(sequence_name: str):
         return True
 
     except Exception as e:
-        print(f"ERROR: {e}")
+        print(f"Error during sequence execution: {e}")
         return False
     finally:
         gr.disconnect()
