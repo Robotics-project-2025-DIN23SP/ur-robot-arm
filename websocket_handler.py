@@ -73,7 +73,7 @@ async def websocket_connection(max_retries=3, retry_delay=5):
                     except json.JSONDecodeError:
                         print("Received invalid JSON message")
 
-                # If we reach here, connection was successful, so break out
+                # If this point is reached during connection, we break out of the loop
                 break
 
         except Exception as e:
