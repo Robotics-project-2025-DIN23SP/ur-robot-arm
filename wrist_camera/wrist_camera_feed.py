@@ -4,10 +4,16 @@ import numpy as np
 import time
 from .gopigo_detector import detect_gopigo
 
+
 CAMERA_URL = "http://192.168.100.10:4242/current.jpg"
+
+detection_state = {
+    "Detected": False
+    }
 
 def show_live_feed(poll_interval=0.1):
     print("Starting feed... (Press ESC to quit)")
+    global detection_state
 
     while True:
         try:
@@ -21,6 +27,8 @@ def show_live_feed(poll_interval=0.1):
 
             # handling gopigo detection
             detected, matches, kp = detect_gopigo(gray)
+
+            detection_state["Detected"] = detected
 
             if detected:
                 status = "GoPiGo DETECTED"

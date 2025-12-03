@@ -1,6 +1,6 @@
 from gripper.gripper import URGripperController
 import importlib
-from wrist_camera.wrist_camera_feed import show_live_feed
+from wrist_camera.wrist_camera_feed import show_live_feed, detection_state
 from threading import Thread
 
 def run_custom_sequence(sequence_name: str):
@@ -33,6 +33,8 @@ def run_custom_sequence(sequence_name: str):
         camera_thread = Thread(target=show_live_feed, daemon=True)
         camera_thread.start()
         
+        print("DETECTED?", detection_state["Detected"])
+
         # Execute each step in the sequence
         for step_num, description, action_func in sequence_steps:
             print(f"**[Step {step_num}]** {description}...")
