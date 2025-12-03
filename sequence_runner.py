@@ -1,5 +1,7 @@
 from gripper.gripper import URGripperController
 import importlib
+from wrist_camera.wrist_camera_feed import show_live_feed
+from threading import Thread
 
 def run_custom_sequence(sequence_name: str):
     """
@@ -27,6 +29,9 @@ def run_custom_sequence(sequence_name: str):
         print("\n--- Initialization Complete. Starting 12-Step Robot Sequence ---\n")
         
         sequence_steps = sequence_module.get_sequence(gr)
+        # Start camera feed in background thread
+        camera_thread = Thread(target=show_live_feed, daemon=True)
+        camera_thread.start()
         
         # Execute each step in the sequence
         for step_num, description, action_func in sequence_steps:

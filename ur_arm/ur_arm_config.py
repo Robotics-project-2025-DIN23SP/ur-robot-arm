@@ -17,7 +17,7 @@ POSITION_GOPIGO_HIGH: List[float] =  degrees_to_radians([3.61, -64.32, 82.68, -1
 POSITION_GOPIGO_LOW: List[float] =  degrees_to_radians([3.60, -51.61, 97.22, -137.19, -91.46, -176.75])
 
 # position for detecting the GoPiGo car
-POSITION_GOPIGO_DETECT: List[float] =  degrees_to_radians([7.72, -68.96, 121.32, -143.92, -91.51, -175.61])
+POSITION_GOPIGO_DETECT: List[float] =  degrees_to_radians([3.61, -64.32, 82.62, -85.00, -91.47, -176.72])
 
 # positions for item_1
 POSITION_APPROACH_ITEM_1: List[float] = degrees_to_radians([65.02, -73.07, 90.05, -106.94, -89.99, -205.01])
