@@ -1,5 +1,8 @@
 import cv2
 import os
+import urllib.request
+import numpy as np
+import time
 
 CAMERA_URL = "http://192.168.100.10:4242/current.jpg"
 
@@ -63,3 +66,63 @@ def detect_gopigo(frame_gray):
             return True, good_matches, kp_frame
 
     return False, [], kp_frame
+
+
+def capture_frame_from_camera():
+    """
+    Captures a single frame from the robot's wrist camera.
+    Returns the frame in BGR format, or None if capture fails.
+    """
+    try:
+        with urllib.request.urlopen(CAMERA_URL, timeout=2) as resp:
+            img_array = np.asarray(bytearray(resp.read()), dtype=np.uint8)
+            frame = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+        return frame
+    except Exception as e:
+        print(f"[Camera capture error] {e}")
+        return None
+
+
+def check_gopigo_in_detection_area(wait_time=2, num_checks=3):
+    """
+    Checks if GoPiGo car is present in the detection area.
+    
+    Args:
+        wait_time: Seconds to wait between checks
+        num_checks: Number of checks to perform (for reliability)
+    
+    Returns:
+        True if GoPiGo detected, False otherwise
+    """
+    detection_results = []
+    
+    print(f"Checking for GoPiGo... (performing {num_checks} checks)")
+    
+    for check_num in range(num_checks):
+        try:
+            frame = capture_frame_from_camera()
+            if frame is None:
+                print(f"Check {check_num + 1}/{num_checks}: Failed to capture frame")
+                detection_results.append(False)
+            else:
+                gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+                detected, _, _ = detect_gopigo(gray)
+                status = "DETECTED" if detected else "NOT FOUND"
+                print(f" Check {check_num + 1}/{num_checks}: {status}")
+                detection_results.append(detected)
+            
+            # Wait before next check (except on last check)
+            if check_num < num_checks - 1:
+                time.sleep(wait_time)
+        
+        except Exception as e:
+            print(f"Check {check_num + 1}/{num_checks}: Error - {e}")
+            detection_results.append(False)
+    
+    # Return True if majority of checks detected GoPiGo
+    detected_count = sum(detection_results)
+    gopigo_found = detected_count >= (num_checks / 2)
+    
+    print(f"\nDetection Result: {'GoPiGo FOUND' if gopigo_found else 'GoPiGo NOT FOUND'} ({detected_count}/{num_checks} checks)\n")
+    
+    return gopigo_found
