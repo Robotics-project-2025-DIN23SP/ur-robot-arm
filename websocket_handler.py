@@ -4,6 +4,7 @@ import asyncio
 from concurrent.futures import ThreadPoolExecutor
 from config import URL, SECRET_TOKEN
 from sequence_runner import run_custom_sequence
+from wrist_camera.websocket_video_stream import run_action_with_streaming
 
 PRODUCT_TO_SEQUENCE = {
     "P001": "item_1",
@@ -56,29 +57,43 @@ async def websocket_connection(max_retries=3, retry_delay=5):
                             product_code = payload.get("product", "P001")
                             sequence_name = PRODUCT_TO_SEQUENCE.get(product_code)
 
+                            # pick and place product
                             if not sequence_name:
                                 print(f"ERROR: No movement sequence mapped to product {product_code}")
-                                status = "fail"
+                                #send response message
+                                response = {
+                                    "sender_id": "UR_ARM_1",
+                                    "event": "PICK_COMPLETE",
+                                    "payload": {
+                                        "status": "fail"
+                                    }
+                                }
+                                await websocket.send(json.dumps(response))
                             else:
+                                # Run blocking code in executor so event loop can process pings
                                 loop = asyncio.get_event_loop()
-                                success = await loop.run_in_executor(executor, run_custom_sequence, sequence_name)
-                                status = "success" if success else "fail"
+                                async def action():
+                                    success = await loop.run_in_executor(executor, run_custom_sequence, sequence_name)
+                                    status = "success" if success else "fail"
+                                    print(f"STATUS: {status}")
+                                    return status
 
-                            response = {
-                                "sender_id": "UR_ARM_1",
-                                "event": "PICK_COMPLETE",
-                                "payload": {"status": status}
-                            }
-                            await websocket.send(json.dumps(response))
+                                    # Run action with streaming
+                                await run_action_with_streaming(
+                                    websocket,
+                                    "UR_ARM_1",
+                                    action_fn=action,
+                                    response_event="PICK_COMPLETE",
+                                )
                     except json.JSONDecodeError:
                         print("Received invalid JSON message")
-
                 # If this point is reached during connection, we break out of the loop
                 break
 
         except Exception as e:
             attempt += 1
             print(f"WebSocket connection error: {e}")
+            print(sequence_name)
             if attempt < max_retries:
                 print(f"Retrying in {retry_delay} seconds...")
                 await asyncio.sleep(retry_delay)
