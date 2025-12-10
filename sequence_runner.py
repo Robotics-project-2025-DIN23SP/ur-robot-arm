@@ -49,7 +49,7 @@ def run_custom_sequence(sequence_name: str):
         # Execute each step in the sequence
         for step_num, description, action_func in sequence_steps:
             print(f"**[Step {step_num}]** {description}...")
-            action_func() 
+            action_func()
             print(f"Step {step_num} complete.\n")
             
             # Check if this is the detection step (step 7 - "Check for GoPiGo Car")
@@ -78,12 +78,12 @@ def run_custom_sequence(sequence_name: str):
                     
                     # Move back to approach position
                     print("**[Return Step 4]** Move to Approach Position...")
-                    move_to(current_positions["approach"], 4)
+                    move_to(current_positions["approach"], 2)
                     print("Return Step 4 complete.\n")
 
                     # Move back to default position
                     print("**[Return Step 5]** Move to Default Position...")
-                    move_to("default_position", 4)
+                    move_to("default_position", 2)
                     print("Return Step 5 complete.\n")
                     
                     print(f"\n*** {sequence_name.upper()} Returned. Sequence Aborted (GoPiGo Not Found). ***")
@@ -101,4 +101,4 @@ def run_custom_sequence(sequence_name: str):
         gr.disconnect()
     
 #if __name__ == "__main__":
-#    run_custom_sequence("item_3")
+#    run_custom_sequence("item_1")
