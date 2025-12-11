@@ -93,7 +93,6 @@ async def websocket_connection(max_retries=3, retry_delay=5):
         except Exception as e:
             attempt += 1
             print(f"WebSocket connection error: {e}")
-            print(sequence_name)
             if attempt < max_retries:
                 print(f"Retrying in {retry_delay} seconds...")
                 await asyncio.sleep(retry_delay)

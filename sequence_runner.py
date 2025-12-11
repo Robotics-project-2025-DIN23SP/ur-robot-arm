@@ -100,5 +100,6 @@ def run_custom_sequence(sequence_name: str):
     finally:
         gr.disconnect()
     
-if __name__ == "__main__":
-    run_custom_sequence("item_1")
+# This is for testing purposes only, so without needing to run the full websocket server
+#if __name__ == "__main__":
+#    run_custom_sequence("item_2")

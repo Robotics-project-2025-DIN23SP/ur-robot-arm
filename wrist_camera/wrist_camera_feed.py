@@ -2,7 +2,7 @@ import cv2
 import urllib.request
 import numpy as np
 import time
-from .gopigo_detector import detect_gopigo
+from gopigo_detector import detect_gopigo
 
 
 CAMERA_URL = "http://192.168.100.10:4242/current.jpg"

@@ -17,9 +17,11 @@ REF_IMG_DIR = os.path.join(BASE_DIR, "reference_pictures")
 # load the reference images of GoPiGos that we compare the live camera feed to
 # convert images to grayscale (which ORB uses)
 ref_imgs = [
-    cv2.imread(os.path.join(REF_IMG_DIR, "gopigo_image_1.jpeg"), cv2.IMREAD_GRAYSCALE),
-    cv2.imread(os.path.join(REF_IMG_DIR, "gopigo_image_2.jpeg"), cv2.IMREAD_GRAYSCALE),
-    cv2.imread(os.path.join(REF_IMG_DIR, "gopigo_image_4.jpeg"), cv2.IMREAD_GRAYSCALE),
+    #cv2.imread(os.path.join(REF_IMG_DIR, "gopigo_image_1.jpeg"), cv2.IMREAD_GRAYSCALE),
+    #cv2.imread(os.path.join(REF_IMG_DIR, "gopigo_image_2.jpeg"), cv2.IMREAD_GRAYSCALE),
+    #cv2.imread(os.path.join(REF_IMG_DIR, "gopigo_image_4.jpeg"), cv2.IMREAD_GRAYSCALE),
+    cv2.imread(os.path.join(REF_IMG_DIR, "gopigo_image_5.jpg"), cv2.IMREAD_GRAYSCALE),
+    cv2.imread(os.path.join(REF_IMG_DIR, "gopigo_image_6.jpg"), cv2.IMREAD_GRAYSCALE),
 ]
 
 ref_features = []
