@@ -11,7 +11,14 @@ This repository is a part of a larger project, which demonstrates a warehouse au
 ### Core Libraries 
 - **Socket**: TCP/IP communication with the UR robot controller.
 - **Asyncio**: lets code execute asynchronously and helps maintain a responsive websocket connection.
-- **Websockets**:
+- **Websockets**: used to establish and maintain a websocket connection with our server (created by another student team).
+- **Threading**: used to run the wrist camera video feed in a background thread.
+- **ThreadPoolExecutor**: used to run blocking functions (run_custom_sequence) in a separate thread without blocking the asyncio event loop that manages the websocket connection.
+- **Importlib**: dynamically loads the correct movement sequences based on the product code.
+- **Dotenv**: load configuration variables from a .env file.
+- **OpenCV (cv2)**: handles frame decoding and visual processing for GoPiGo detection.
+- **Sys**: handles system-level interactions, like exiting the program. 
+- **Time**: used to manage timing and synchronization between commands.
 
 ## Installation
 
