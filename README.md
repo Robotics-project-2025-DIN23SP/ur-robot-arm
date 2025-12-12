@@ -2,6 +2,9 @@
 
 This repository is a part of a larger project, which demonstrates a warehouse automation system built using three different types of robots; two Universal Robots robot arms, a Tello Edu drone, and a GoPiGo car. All robots communicate via a shared Websocket server, which gets notified of any orders that should be picked up from the warehouse using the project's own e-commerce website. This repository contains the implementation for the first Universal Robots robot arm.
 
+## UR Arm Capabilities & Behavior
+The task of this first UR robot arm is to receive a message from the project's Websocket server to pick and place a specific item onto a GoPiGo car. 
+
 ## Technology Stack & Libraries
 
 ### Languages 
@@ -19,6 +22,12 @@ This repository is a part of a larger project, which demonstrates a warehouse au
 - **OpenCV (cv2)**: handles frame decoding and visual processing for GoPiGo detection.
 - **Sys**: handles system-level interactions, like exiting the program. 
 - **Time**: used to manage timing and synchronization between commands.
+
+## Functionality Showcase
+
+### Video Demonstration
+
+### GoPiGo Detection (ORB Feature Matching)
 
 ## Installation
 
