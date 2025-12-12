@@ -2,14 +2,14 @@ import cv2
 import urllib.request
 import numpy as np
 import time
-from gopigo_detector import detect_gopigo
+from .gopigo_detector import detect_gopigo # needs a period at the start for main, no period for running this file
 
 
 CAMERA_URL = "http://192.168.100.10:4242/current.jpg"
 
 detection_state = {
     "Detected": False
-    }
+}
 
 def show_live_feed(poll_interval=0.1):
     """
