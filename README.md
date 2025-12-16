@@ -1,4 +1,4 @@
-# Universal Robots Arm for Warehouse Automation
+<h1 align="center">Universal Robots Arm for Warehouse Automation</h1>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
