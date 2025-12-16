@@ -12,11 +12,11 @@
 <table>
   <tr>
     <td style="text-align: center;">
-      <img src="assets/ur_arm.jpeg" alt="UR Arm" width="300" height="300" style="object-fit: cover;"/>
+      <img src="assets/ur_arm.jpeg" alt="UR Arm" width="400" height="300"/>
       <br>UR Arm
     </td>
     <td style="text-align: center;">
-      <img src="assets/ur_arm_serial_no_2.jpeg" alt="UR ArM Serial No" width="300" height="300" style="object-fit: cover;"/>
+      <img src="assets/ur_arm_serial_no_2.jpeg" alt="UR ArM Serial No" width="400" height="300"/>
       <br>Serial No.
     </td>
   </tr>
