@@ -28,7 +28,6 @@
 - [Sequence of Operation](#sequence-of-operation)
 - [Technology Stack & Libraries](#technology-stack-&-libraries)
 - [Functionality Showcase](#functionality-showcase)
-- [License](#license)
 - [Prerequisites](#rerequisite)
 - [Quickstart Guide](#quickstart-guide)
 
