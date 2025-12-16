@@ -16,7 +16,7 @@
       <br>UR Arm
     </td>
     <td style="text-align: center;">
-      <img src="assets/ur_arm_serial_2.jpeg" alt="UR ArM Serial No" width="400"/>
+      <img src="assets/ur_arm_serial_2.jpeg" alt="UR ArM Serial No" width="400" height="465"/>
       <br>Serial No.
     </td>
   </tr>
