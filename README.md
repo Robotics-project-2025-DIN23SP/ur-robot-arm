@@ -1,12 +1,12 @@
 # Universal Robots Arm for Warehouse Automation
 
-<p style="text-align: center;">
+<p align="center">
   <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
   <img src="https://img.shields.io/badge/OpenCV-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white" alt="OpenCV" />
-  <img src="https://img.shields.io/badge/Asyncio-000000?style=for-the-badge&logo=asyncio&logoColor=white" alt="Asyncio" />
-  <img src="https://img.shields.io/badge/WebSockets-1A1A1A?style=for-the-badge&logo=websocket&logoColor=white" alt="WebSockets" />
+  <img src="https://img.shields.io/badge/Asyncio-000000?style=for-the-badge" alt="Asyncio" />
+  <img src="https://img.shields.io/badge/WebSockets-1A1A1A?style=for-the-badge" alt="WebSockets" />
   <img src="https://img.shields.io/badge/Threading-FF8C00?style=for-the-badge&logo=python&logoColor=white" alt="Threading" />
-  <img src="https://img.shields.io/badge/URScript-003A8F?style=for-the-badge&logo=robotframework&logoColor=white" alt="URScript" />
+  <img src="https://img.shields.io/badge/URScript-003A8F?style=for-the-badge" alt="URScript" />
 </p>
 
 <table>
@@ -34,15 +34,15 @@ This repository contains the implementation for the first Universal Robots (UR) 
 
 This Universal Robots (UR) arm is responsible for the initial automated pick and place operation in the warehouse workflow. Its task is to pick up ordered items from storage and place them onto a GoPiGo car.
 
-1. **Order Triggered via Websocket**
+1. **Order Triggered via Websocket**:
 Once a GoPiGo car arrives at the designated loading station, it notifies the shared WebSocket server. The server then sends a "PICK_AND_PLACE" event to the UR arm controller, including the product ID corresponding to an order placed through the project’s e-commerce website.
-2. **Movement Sequence Selection**
+2. **Movement Sequence Selection**:
 Once the Universal Robots (UR) arm receives the event, it executes the movement sequence associated with the specified product ID. Each product the robot can pick up has its own corresponding movement sequence implemented as a Python module containing step-by-step functions that issue URScript commands. These modules are stored in the item_movement_sequences directory and are dynamically loaded using importlib. The movement sequences are run in a background thread using a ThreadPoolExecutor, since they would otherwise block the websocket connection.
-3. **Vision**
+3. **Vision**:
 As the movement sequence for the selected product is running, a video feed from the robot’s wrist camera is continuously processed in a background thread. The feed is retrieved frame-by-frame and decoded using the OpenCV (cv2) library. This video feed is sent the the project's Websocket server for viewing.
-4. **GoPiGo Detection**
+4. **GoPiGo Detection**:
 During each movement sequence, the UR arm pauses briefly above the loading station where the GoPiGo car is expected to be. While in this position, the system performs three checks to determine whether the GoPiGo is present in the camera’s field of view. If the GoPiGo is detected, the item is placed onto the car. If not, the item is returned to the shelf. To detect whether a GoPiGo is present in the camera’s view, the system uses ORB (Oriented FAST and Rotated BRIEF) feature detection.
-5. **Response Message**
+5. **Response Message**:
 After the operation is complete, either a successful or failed “PICK_COMPLETE” message is sent back to the Websocket server.
 
 ---
@@ -76,11 +76,11 @@ After the operation is complete, either a successful or failed “PICK_COMPLETE�
 <table>
   <tr>
     <td style="text-align: center;">
-      <img src="assets/gopigo_detected_with_orb.jpeg" alt="GoPiGo Detected" width="300"/>
+      <img src="assets/gopigo_detected_with_orb.jpeg" alt="GoPiGo Detected" width="400"/>
       <br>GoPiGo Detected
     </td>
     <td style="text-align: center;">
-      <img src="assets/gopigo_not_found_with_orb.jpeg" alt="GoPiGo Not Found" width="300"/>
+      <img src="assets/gopigo_not_found_with_orb.jpeg" alt="GoPiGo Not Found" width="400"/>
       <br>GoPiGo Not Found
     </td>
   </tr>
