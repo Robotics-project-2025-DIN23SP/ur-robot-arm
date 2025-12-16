@@ -12,7 +12,7 @@
 <table>
   <tr>
     <td style="text-align: center;">
-      <img src="assets/ur_arm_2.jpeg" alt="UR Arm" width="400" height="400"/>
+      <img src="assets/ur_arm_2.jpeg" alt="UR Arm" width="400" height="465"/>
       <br>UR Arm
     </td>
     <td style="text-align: center;">
