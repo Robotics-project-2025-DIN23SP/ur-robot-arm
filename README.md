@@ -84,8 +84,6 @@ After the operation is complete, either a successful or failed â€œPICK_COMPLETEâ
 
 ## Functionality Showcase
 
-### Video Demonstration
-
 ### GoPiGo Detection (ORB Feature Matching)
 
 <table>
